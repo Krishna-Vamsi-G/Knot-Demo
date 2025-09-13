@@ -4,10 +4,10 @@
   "description": "KnotAPI Demo - Professional transaction viewer showcasing merchant connections",
   "main": "public/index.html",
   "scripts": {
-    "start": "python3 -m http.server 3000",
-    "dev": "python3 -m http.server 3000",
+    "start": "python3 -m http.server 3000 --bind 127.0.0.1",
+    "dev": "python3 -m http.server 3000 --bind 127.0.0.1",
     "build": "echo 'Static site - no build process needed'",
-    "serve": "python3 -m http.server 3000"
+    "serve": "python3 -m http.server 3000 --bind 127.0.0.1"
   },
   "keywords": [
     "knotapi",
