@@ -10,7 +10,7 @@ const merchantData = {
                 title: 'Grocery Shopping',
                 description: 'Fresh produce, dairy, and household items',
                 amount: -127.45,
-                date: '2024-01-15',
+                date: '2025-01-15',
                 category: 'groceries'
             },
             {
@@ -18,7 +18,7 @@ const merchantData = {
                 title: 'Electronics',
                 description: 'Wireless headphones and phone case',
                 amount: -89.99,
-                date: '2024-01-12',
+                date: '2025-01-12',
                 category: 'electronics'
             },
             {
@@ -26,7 +26,7 @@ const merchantData = {
                 title: 'Clothing',
                 description: 'Winter jackets and accessories',
                 amount: -156.78,
-                date: '2024-01-08',
+                date: '2025-01-08',
                 category: 'clothing'
             },
             {
@@ -34,7 +34,7 @@ const merchantData = {
                 title: 'Home & Garden',
                 description: 'Cleaning supplies and tools',
                 amount: -45.32,
-                date: '2024-01-05',
+                date: '2025-01-05',
                 category: 'home'
             },
             {
@@ -42,7 +42,7 @@ const merchantData = {
                 title: 'Health & Beauty',
                 description: 'Vitamins and personal care items',
                 amount: -23.67,
-                date: '2024-01-02',
+                date: '2025-01-02',
                 category: 'health'
             }
         ]
@@ -57,7 +57,7 @@ const merchantData = {
                 title: 'Pizza Palace',
                 description: 'Large pepperoni pizza and garlic bread',
                 amount: -28.50,
-                date: '2024-01-14',
+                date: '2025-01-14',
                 category: 'food'
             },
             {
@@ -65,7 +65,7 @@ const merchantData = {
                 title: 'Sushi Express',
                 description: 'California rolls and miso soup',
                 amount: -42.75,
-                date: '2024-01-11',
+                date: '2025-01-11',
                 category: 'food'
             },
             {
@@ -73,7 +73,7 @@ const merchantData = {
                 title: 'Burger King',
                 description: 'Whopper meal with fries and drink',
                 amount: -15.99,
-                date: '2024-01-09',
+                date: '2025-01-09',
                 category: 'food'
             },
             {
@@ -81,7 +81,7 @@ const merchantData = {
                 title: 'Starbucks Coffee',
                 description: 'Caramel macchiato and pastry',
                 amount: -12.45,
-                date: '2024-01-07',
+                date: '2025-01-07',
                 category: 'food'
             },
             {
@@ -89,7 +89,7 @@ const merchantData = {
                 title: 'Thai Garden',
                 description: 'Pad thai and spring rolls',
                 amount: -35.20,
-                date: '2024-01-04',
+                date: '2025-01-04',
                 category: 'food'
             }
         ]
@@ -104,7 +104,7 @@ const merchantData = {
                 title: 'Prescription',
                 description: 'Blood pressure medication refill',
                 amount: -15.99,
-                date: '2024-01-13',
+                date: '2025-01-13',
                 category: 'pharmacy'
             },
             {
@@ -112,7 +112,7 @@ const merchantData = {
                 title: 'Over-the-Counter',
                 description: 'Pain relievers and vitamins',
                 amount: -24.50,
-                date: '2024-01-10',
+                date: '2025-01-10',
                 category: 'pharmacy'
             },
             {
@@ -120,7 +120,7 @@ const merchantData = {
                 title: 'Beauty Products',
                 description: 'Skincare and makeup items',
                 amount: -67.89,
-                date: '2024-01-06',
+                date: '2025-01-06',
                 category: 'beauty'
             },
             {
@@ -128,7 +128,7 @@ const merchantData = {
                 title: 'First Aid',
                 description: 'Bandages and antiseptic',
                 amount: -12.34,
-                date: '2024-01-03',
+                date: '2025-01-03',
                 category: 'health'
             }
         ]
@@ -143,7 +143,7 @@ const merchantData = {
                 title: 'Prime Membership',
                 description: 'Annual Prime subscription renewal',
                 amount: -139.00,
-                date: '2024-01-14',
+                date: '2025-01-14',
                 category: 'subscription'
             },
             {
@@ -151,7 +151,7 @@ const merchantData = {
                 title: 'Books',
                 description: 'Programming and business books',
                 amount: -45.67,
-                date: '2024-01-12',
+                date: '2025-01-12',
                 category: 'books'
             },
             {
@@ -159,7 +159,7 @@ const merchantData = {
                 title: 'Electronics',
                 description: 'USB cables and adapters',
                 amount: -23.45,
-                date: '2024-01-09',
+                date: '2025-01-09',
                 category: 'electronics'
             },
             {
@@ -167,7 +167,7 @@ const merchantData = {
                 title: 'Home & Kitchen',
                 description: 'Coffee maker and kitchen gadgets',
                 amount: -89.99,
-                date: '2024-01-07',
+                date: '2025-01-07',
                 category: 'home'
             },
             {
@@ -175,7 +175,7 @@ const merchantData = {
                 title: 'Clothing',
                 description: 'T-shirts and casual wear',
                 amount: -34.50,
-                date: '2024-01-05',
+                date: '2025-01-05',
                 category: 'clothing'
             },
             {
@@ -183,7 +183,7 @@ const merchantData = {
                 title: 'Garden Tools',
                 description: 'Planting supplies and tools',
                 amount: -56.78,
-                date: '2024-01-02',
+                date: '2025-01-02',
                 category: 'garden'
             }
         ]
@@ -198,7 +198,7 @@ const merchantData = {
                 title: 'Home Decor',
                 description: 'Throw pillows and wall art',
                 amount: -78.90,
-                date: '2024-01-13',
+                date: '2025-01-13',
                 category: 'home'
             },
             {
@@ -206,7 +206,7 @@ const merchantData = {
                 title: 'Kids Clothing',
                 description: 'School clothes and shoes',
                 amount: -123.45,
-                date: '2024-01-10',
+                date: '2025-01-10',
                 category: 'clothing'
             },
             {
@@ -214,7 +214,7 @@ const merchantData = {
                 title: 'Toys & Games',
                 description: 'Educational toys and board games',
                 amount: -67.89,
-                date: '2024-01-08',
+                date: '2025-01-08',
                 category: 'toys'
             },
             {
@@ -222,7 +222,7 @@ const merchantData = {
                 title: 'Beauty',
                 description: 'Makeup and skincare products',
                 amount: -45.67,
-                date: '2024-01-05',
+                date: '2025-01-05',
                 category: 'beauty'
             }
         ]
@@ -237,7 +237,7 @@ const merchantData = {
                 title: 'Morning Coffee',
                 description: 'Grande latte and croissant',
                 amount: -8.45,
-                date: '2024-01-15',
+                date: '2025-01-15',
                 category: 'food'
             },
             {
@@ -245,7 +245,7 @@ const merchantData = {
                 title: 'Afternoon Break',
                 description: 'Iced coffee and cookie',
                 amount: -6.75,
-                date: '2024-01-14',
+                date: '2025-01-14',
                 category: 'food'
             },
             {
@@ -253,7 +253,7 @@ const merchantData = {
                 title: 'Coffee Meeting',
                 description: 'Two lattes and pastries',
                 amount: -18.90,
-                date: '2024-01-12',
+                date: '2025-01-12',
                 category: 'food'
             },
             {
@@ -261,7 +261,7 @@ const merchantData = {
                 title: 'Gift Card',
                 description: 'Starbucks gift card purchase',
                 amount: -25.00,
-                date: '2024-01-09',
+                date: '2025-01-09',
                 category: 'gift'
             },
             {
@@ -269,7 +269,7 @@ const merchantData = {
                 title: 'Weekly Coffee',
                 description: 'Regular morning coffee',
                 amount: -5.25,
-                date: '2024-01-08',
+                date: '2025-01-08',
                 category: 'food'
             }
         ]
