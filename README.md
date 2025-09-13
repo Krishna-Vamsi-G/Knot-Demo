@@ -12,10 +12,10 @@ cd knotapi-demo
 # Start the development server
 npm start
 # or
-python3 -m http.server 8000
+python3 -m http.server 3000
 
 # Open in browser
-open http://localhost:8000/public/
+open http://localhost:3000/public/index.html
 ```
 
 ## 📁 Project Structure
@@ -88,6 +88,7 @@ knotapi-demo/
 ### Local Development
 ```bash
 npm start
+# Server runs on http://localhost:3000
 ```
 
 ### Production
