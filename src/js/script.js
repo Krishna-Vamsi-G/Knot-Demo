@@ -94,6 +94,77 @@ const merchantData = {
             }
         ]
     },
+    spotify: {
+        name: 'Spotify',
+        icon: 'fab fa-spotify',
+        color: '#1db954',
+        transactions: [
+            {
+                id: 1,
+                title: 'Music Streaming',
+                description: 'Listened to 47 songs this week',
+                amount: -0.00,
+                date: '2025-01-15',
+                category: 'music'
+            },
+            {
+                id: 2,
+                title: 'Podcast Episode',
+                description: 'The Joe Rogan Experience - 2h 34m',
+                amount: -0.00,
+                date: '2025-01-14',
+                category: 'podcast'
+            },
+            {
+                id: 3,
+                title: 'Playlist Creation',
+                description: 'Created "Workout Mix" - 23 songs',
+                amount: -0.00,
+                date: '2025-01-13',
+                category: 'playlist'
+            },
+            {
+                id: 4,
+                title: 'Album Play',
+                description: 'Taylor Swift - Midnights (Complete)',
+                amount: -0.00,
+                date: '2025-01-12',
+                category: 'music'
+            },
+            {
+                id: 5,
+                title: 'Podcast Series',
+                description: 'Serial - Episode 3 (45m)',
+                amount: -0.00,
+                date: '2025-01-11',
+                category: 'podcast'
+            },
+            {
+                id: 6,
+                title: 'Daily Mix',
+                description: 'Daily Mix 1 - 2h 15m listening',
+                amount: -0.00,
+                date: '2025-01-10',
+                category: 'music'
+            },
+            {
+                id: 7,
+                title: 'Discover Weekly',
+                description: '30 new songs discovered',
+                amount: -0.00,
+                date: '2025-01-09',
+                category: 'discovery'
+            },
+            {
+                id: 8,
+                title: 'Sleep Sounds',
+                description: 'Rain Sounds - 8h 30m',
+                amount: -0.00,
+                date: '2025-01-08',
+                category: 'ambient'
+            }
+        ]
+    },
     cvs: {
         name: 'CVS',
         icon: 'fas fa-pills',
@@ -381,17 +452,40 @@ function loadTransactions() {
 }
 
 function updateSummary(transactions) {
+    const selectedMerchant = localStorage.getItem('selectedMerchant');
     const totalAmount = transactions.reduce((sum, transaction) => sum + Math.abs(transaction.amount), 0);
     const transactionCount = transactions.length;
     const lastPurchase = transactions.length > 0 ? formatDate(transactions[0].date) : '-';
     
-    document.getElementById('totalAmount').textContent = `$${totalAmount.toFixed(2)}`;
-    document.getElementById('transactionCount').textContent = transactionCount;
-    document.getElementById('lastPurchase').textContent = lastPurchase;
+    // Special handling for Spotify
+    if (selectedMerchant === 'spotify') {
+        const totalSongs = transactions.filter(t => t.category === 'music').length;
+        const totalPodcasts = transactions.filter(t => t.category === 'podcast').length;
+        const totalPlaylists = transactions.filter(t => t.category === 'playlist').length;
+        
+        // Update labels for Spotify
+        document.querySelector('.summary-card:nth-child(1) h3').textContent = 'Songs Listened';
+        document.querySelector('.summary-card:nth-child(2) h3').textContent = 'Podcasts';
+        document.querySelector('.summary-card:nth-child(3) h3').textContent = 'Playlists';
+        
+        document.getElementById('totalAmount').textContent = `${totalSongs} songs`;
+        document.getElementById('transactionCount').textContent = `${totalPodcasts} episodes`;
+        document.getElementById('lastPurchase').textContent = `${totalPlaylists} created`;
+    } else {
+        // Reset labels for other merchants
+        document.querySelector('.summary-card:nth-child(1) h3').textContent = 'Total Spent';
+        document.querySelector('.summary-card:nth-child(2) h3').textContent = 'Transactions';
+        document.querySelector('.summary-card:nth-child(3) h3').textContent = 'Last Purchase';
+        
+        document.getElementById('totalAmount').textContent = `$${totalAmount.toFixed(2)}`;
+        document.getElementById('transactionCount').textContent = transactionCount;
+        document.getElementById('lastPurchase').textContent = lastPurchase;
+    }
 }
 
 function renderTransactions(transactions) {
     const transactionsList = document.getElementById('transactionsList');
+    const selectedMerchant = localStorage.getItem('selectedMerchant');
     
     if (transactions.length === 0) {
         transactionsList.innerHTML = `
@@ -403,21 +497,43 @@ function renderTransactions(transactions) {
         return;
     }
     
-    transactionsList.innerHTML = transactions.map(transaction => `
-        <div class="transaction-item">
-            <div class="transaction-icon">
-                <i class="fas fa-${getCategoryIcon(transaction.category)}"></i>
+    transactionsList.innerHTML = transactions.map(transaction => {
+        // Special handling for Spotify - show listening metrics instead of amounts
+        let amountDisplay = '';
+        if (selectedMerchant === 'spotify') {
+            if (transaction.category === 'music') {
+                amountDisplay = '🎵 Music';
+            } else if (transaction.category === 'podcast') {
+                amountDisplay = '🎧 Podcast';
+            } else if (transaction.category === 'playlist') {
+                amountDisplay = '📝 Playlist';
+            } else if (transaction.category === 'discovery') {
+                amountDisplay = '🔍 Discovery';
+            } else if (transaction.category === 'ambient') {
+                amountDisplay = '🌙 Ambient';
+            } else {
+                amountDisplay = '🎵 Audio';
+            }
+        } else {
+            amountDisplay = `${transaction.amount < 0 ? '-' : '+'}$${Math.abs(transaction.amount).toFixed(2)}`;
+        }
+        
+        return `
+            <div class="transaction-item">
+                <div class="transaction-icon">
+                    <i class="fas fa-${getCategoryIcon(transaction.category)}"></i>
+                </div>
+                <div class="transaction-details">
+                    <div class="transaction-title">${transaction.title}</div>
+                    <div class="transaction-description">${transaction.description}</div>
+                    <div class="transaction-date">${formatDate(transaction.date)}</div>
+                </div>
+                <div class="transaction-amount ${selectedMerchant === 'spotify' ? 'positive' : (transaction.amount < 0 ? 'negative' : 'positive')}">
+                    ${amountDisplay}
+                </div>
             </div>
-            <div class="transaction-details">
-                <div class="transaction-title">${transaction.title}</div>
-                <div class="transaction-description">${transaction.description}</div>
-                <div class="transaction-date">${formatDate(transaction.date)}</div>
-            </div>
-            <div class="transaction-amount ${transaction.amount < 0 ? 'negative' : 'positive'}">
-                ${transaction.amount < 0 ? '-' : '+'}$${Math.abs(transaction.amount).toFixed(2)}
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function getCategoryIcon(category) {
@@ -434,7 +550,12 @@ function getCategoryIcon(category) {
         books: 'book',
         garden: 'seedling',
         toys: 'gamepad',
-        gift: 'gift'
+        gift: 'gift',
+        music: 'music',
+        podcast: 'podcast',
+        playlist: 'list',
+        discovery: 'search',
+        ambient: 'moon'
     };
     return icons[category] || 'receipt';
 }
