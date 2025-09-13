@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnotAPI Demo - Transactions</title>
+    <link rel="stylesheet" href="../src/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <button class="back-btn" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="logo">
+                <img src="../src/images/knot-logo.png" alt="Knot Logo" class="knotapi-logo">
+                <h1>KnotAPI Demo</h1>
+            </div>
+            <div class="header-actions">
+                <button class="refresh-btn" onclick="refreshTransactions()">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="transactions-main">
+            <div class="merchant-header">
+                <div class="merchant-info-small">
+                    <div class="merchant-logo-small" id="merchantLogoSmall">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div>
+                        <h2 id="merchantNameSmall">Walmart</h2>
+                        <p class="account-info">Connected via <strong>TransactionLink™</strong></p>
+                    </div>
+                </div>
+                <div class="connection-status">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Connected</span>
+                </div>
+            </div>
+
+            <div class="transactions-summary">
+                <div class="summary-card">
+                    <h3>Total Spent</h3>
+                    <p class="amount" id="totalAmount">$0.00</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Transactions</h3>
+                    <p class="count" id="transactionCount">0</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Last Purchase</h3>
+                    <p class="date" id="lastPurchase">-</p>
+                </div>
+            </div>
+
+            <div class="transactions-section">
+                <div class="section-header">
+                    <h3>SKU-Level Transaction Details</h3>
+                    <div class="filter-options">
+                        <select id="timeFilter" onchange="filterTransactions()">
+                            <option value="all">All Time</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="transactions-list" id="transactionsList">
+                    <!-- Transactions will be populated by JavaScript -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../src/js/script.js"></script>
+</body>
+</html>

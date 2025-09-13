@@ -1,0 +1,32 @@
+{
+  "name": "knotapi-demo",
+  "version": "1.0.0",
+  "description": "KnotAPI Demo - Professional transaction viewer showcasing merchant connections",
+  "main": "public/index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'Static site - no build process needed'",
+    "serve": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "knotapi",
+    "demo",
+    "transactions",
+    "merchants",
+    "fintech",
+    "api"
+  ],
+  "author": "KnotAPI",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/knotapi/knotapi-demo"
+  },
+  "homepage": "https://www.knotapi.com",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
