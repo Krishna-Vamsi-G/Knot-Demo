@@ -101,67 +101,99 @@ const merchantData = {
         transactions: [
             {
                 id: 1,
-                title: 'Music Streaming',
-                description: 'Listened to 47 songs this week',
-                amount: -0.00,
+                title: 'Premium Subscription',
+                description: 'Spotify Premium - Monthly billing',
+                amount: -9.99,
                 date: '2025-01-15',
-                category: 'music'
+                category: 'subscription'
             },
             {
                 id: 2,
-                title: 'Podcast Episode',
-                description: 'The Joe Rogan Experience - 2h 34m',
-                amount: -0.00,
+                title: 'Podcast Premium',
+                description: 'The Joe Rogan Experience - Premium episode',
+                amount: -2.99,
                 date: '2025-01-14',
                 category: 'podcast'
             },
             {
                 id: 3,
-                title: 'Playlist Creation',
-                description: 'Created "Workout Mix" - 23 songs',
+                title: 'Music Streaming',
+                description: 'Listened to 47 songs this week',
                 amount: -0.00,
-                date: '2025-01-13',
-                category: 'playlist'
-            },
-            {
-                id: 4,
-                title: 'Album Play',
-                description: 'Taylor Swift - Midnights (Complete)',
-                amount: -0.00,
-                date: '2025-01-12',
+                date: '2025-01-14',
                 category: 'music'
             },
             {
-                id: 5,
-                title: 'Podcast Series',
+                id: 4,
+                title: 'Podcast Episode',
                 description: 'Serial - Episode 3 (45m)',
                 amount: -0.00,
-                date: '2025-01-11',
+                date: '2025-01-13',
                 category: 'podcast'
             },
             {
-                id: 6,
-                title: 'Daily Mix',
-                description: 'Daily Mix 1 - 2h 15m listening',
+                id: 5,
+                title: 'Playlist Creation',
+                description: 'Created "Workout Mix" - 23 songs',
                 amount: -0.00,
-                date: '2025-01-10',
+                date: '2025-01-12',
+                category: 'playlist'
+            },
+            {
+                id: 6,
+                title: 'Album Purchase',
+                description: 'Taylor Swift - Midnights (Digital)',
+                amount: -12.99,
+                date: '2025-01-11',
                 category: 'music'
             },
             {
                 id: 7,
-                title: 'Discover Weekly',
-                description: '30 new songs discovered',
-                amount: -0.00,
-                date: '2025-01-09',
-                category: 'discovery'
+                title: 'Podcast Subscription',
+                description: 'NPR News - Monthly premium',
+                amount: -4.99,
+                date: '2025-01-10',
+                category: 'podcast'
             },
             {
                 id: 8,
+                title: 'Daily Mix',
+                description: 'Daily Mix 1 - 2h 15m listening',
+                amount: -0.00,
+                date: '2025-01-09',
+                category: 'music'
+            },
+            {
+                id: 9,
+                title: 'Discover Weekly',
+                description: '30 new songs discovered',
+                amount: -0.00,
+                date: '2025-01-08',
+                category: 'discovery'
+            },
+            {
+                id: 10,
                 title: 'Sleep Sounds',
                 description: 'Rain Sounds - 8h 30m',
                 amount: -0.00,
-                date: '2025-01-08',
+                date: '2025-01-07',
                 category: 'ambient'
+            },
+            {
+                id: 11,
+                title: 'Podcast Donation',
+                description: 'This American Life - Listener support',
+                amount: -5.00,
+                date: '2025-01-06',
+                category: 'podcast'
+            },
+            {
+                id: 12,
+                title: 'Music Video',
+                description: 'Premium music video access',
+                amount: -1.99,
+                date: '2025-01-05',
+                category: 'music'
             }
         ]
     },
@@ -459,18 +491,18 @@ function updateSummary(transactions) {
     
     // Special handling for Spotify
     if (selectedMerchant === 'spotify') {
-        const totalSongs = transactions.filter(t => t.category === 'music').length;
-        const totalPodcasts = transactions.filter(t => t.category === 'podcast').length;
-        const totalPlaylists = transactions.filter(t => t.category === 'playlist').length;
+        const totalSongs = transactions.filter(t => t.category === 'music' && t.amount === 0).length;
+        const totalPodcasts = transactions.filter(t => t.category === 'podcast' && t.amount === 0).length;
+        const totalSpent = transactions.filter(t => t.amount < 0).reduce((sum, t) => sum + Math.abs(t.amount), 0);
         
         // Update labels for Spotify
-        document.querySelector('.summary-card:nth-child(1) h3').textContent = 'Songs Listened';
-        document.querySelector('.summary-card:nth-child(2) h3').textContent = 'Podcasts';
-        document.querySelector('.summary-card:nth-child(3) h3').textContent = 'Playlists';
+        document.querySelector('.summary-card:nth-child(1) h3').textContent = 'Total Spent';
+        document.querySelector('.summary-card:nth-child(2) h3').textContent = 'Songs Listened';
+        document.querySelector('.summary-card:nth-child(3) h3').textContent = 'Podcasts';
         
-        document.getElementById('totalAmount').textContent = `${totalSongs} songs`;
-        document.getElementById('transactionCount').textContent = `${totalPodcasts} episodes`;
-        document.getElementById('lastPurchase').textContent = `${totalPlaylists} created`;
+        document.getElementById('totalAmount').textContent = `$${totalSpent.toFixed(2)}`;
+        document.getElementById('transactionCount').textContent = `${totalSongs} songs`;
+        document.getElementById('lastPurchase').textContent = `${totalPodcasts} episodes`;
     } else {
         // Reset labels for other merchants
         document.querySelector('.summary-card:nth-child(1) h3').textContent = 'Total Spent';
@@ -498,21 +530,27 @@ function renderTransactions(transactions) {
     }
     
     transactionsList.innerHTML = transactions.map(transaction => {
-        // Special handling for Spotify - show listening metrics instead of amounts
+        // Special handling for Spotify - show spending or listening metrics
         let amountDisplay = '';
         if (selectedMerchant === 'spotify') {
-            if (transaction.category === 'music') {
-                amountDisplay = '🎵 Music';
-            } else if (transaction.category === 'podcast') {
-                amountDisplay = '🎧 Podcast';
-            } else if (transaction.category === 'playlist') {
-                amountDisplay = '📝 Playlist';
-            } else if (transaction.category === 'discovery') {
-                amountDisplay = '🔍 Discovery';
-            } else if (transaction.category === 'ambient') {
-                amountDisplay = '🌙 Ambient';
+            if (transaction.amount < 0) {
+                // Show actual spending
+                amountDisplay = `-$${Math.abs(transaction.amount).toFixed(2)}`;
             } else {
-                amountDisplay = '🎵 Audio';
+                // Show listening activity
+                if (transaction.category === 'music') {
+                    amountDisplay = '🎵 Free';
+                } else if (transaction.category === 'podcast') {
+                    amountDisplay = '🎧 Free';
+                } else if (transaction.category === 'playlist') {
+                    amountDisplay = '📝 Free';
+                } else if (transaction.category === 'discovery') {
+                    amountDisplay = '🔍 Free';
+                } else if (transaction.category === 'ambient') {
+                    amountDisplay = '🌙 Free';
+                } else {
+                    amountDisplay = '🎵 Free';
+                }
             }
         } else {
             amountDisplay = `${transaction.amount < 0 ? '-' : '+'}$${Math.abs(transaction.amount).toFixed(2)}`;
